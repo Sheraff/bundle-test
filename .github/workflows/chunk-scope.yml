@@ -18,7 +18,47 @@ jobs:
         env:
           BUNDLE_API_ORIGIN: https://chunk-scope-web-staging.me-b16.workers.dev
         with:
-          scenario: smoke
-          source: |
-            export const label = "chunk-scope-smoke";
-            export const timestamp = Date.now();
+          command: |
+            node <<'NODE'
+            const fs = require("node:fs");
+            const path = require("node:path");
+            const artifactPath = process.env.BUNDLE_ARTIFACT_OUTPUT;
+            const sourceFile = path.join(process.cwd(), "src/main.js");
+            const source = "export const label = 'chunk-scope-smoke';\n";
+            fs.mkdirSync(path.dirname(artifactPath), { recursive: true });
+            const artifact = {
+              schemaVersion: 1,
+              pluginVersion: "smoke",
+              generatedAt: new Date().toISOString(),
+              scenario: { id: "smoke", kind: "fixture-app" },
+              build: { bundler: "vite", bundlerVersion: "0.0.0-smoke", rootDir: process.cwd() },
+              environments: [
+                {
+                  name: "default",
+                  build: { outDir: "dist" },
+                  manifest: {
+                    "src/main.js": { src: "src/main.js", file: "assets/main.js", isEntry: true, name: "main" },
+                  },
+                  chunks: [
+                    {
+                      fileName: "assets/main.js",
+                      name: "main",
+                      isEntry: true,
+                      isDynamicEntry: false,
+                      facadeModuleId: sourceFile,
+                      imports: [],
+                      dynamicImports: [],
+                      implicitlyLoadedBefore: [],
+                      importedCss: [],
+                      importedAssets: [],
+                      modules: [{ rawId: sourceFile, renderedLength: source.length, originalLength: source.length }],
+                      sizes: { raw: source.length, gzip: source.length, brotli: source.length },
+                    },
+                  ],
+                  assets: [],
+                  warnings: [],
+                },
+              ],
+            };
+            fs.writeFileSync(artifactPath, JSON.stringify(artifact, null, 2));
+            NODE
