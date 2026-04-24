@@ -1,0 +1,24 @@
+name: Chunk Scope Smoke
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  chunk-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: Sheraff/bundle/packages/github-action@main
+        env:
+          BUNDLE_API_ORIGIN: https://chunk-scope-web-staging.me-b16.workers.dev
+        with:
+          scenario: smoke
+          source: |
+            export const label = "chunk-scope-smoke";
+            export const timestamp = Date.now();
