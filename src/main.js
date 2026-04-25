@@ -3,8 +3,4 @@ import { dashboardCopy, recommendationSummary, summarizeTelemetry } from "./anal
 
 document.querySelector("#app").textContent = `${dashboardCopy.title}: ${summarizeTelemetry()}`
 
-void import("./lazy.js").then(({ message }) => {
-  console.log(message)
-})
-
 console.log(recommendationSummary())
