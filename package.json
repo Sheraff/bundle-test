@@ -1,0 +1,13 @@
+{
+  "name": "bundle-test",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vite": "8.0.6"
+  },
+  "devDependencies": {},
+  "packageManager": "pnpm@10.27.0"
+}
