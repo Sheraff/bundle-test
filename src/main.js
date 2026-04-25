@@ -6,3 +6,7 @@ document.querySelector("#app").textContent = `${dashboardCopy.title}: ${summariz
 void import("./lazy.js").then(({ message }) => {
   console.log(message)
 })
+
+void import("./recommendations.js").then(({ recommendationSummary }) => {
+  console.log(recommendationSummary())
+})
