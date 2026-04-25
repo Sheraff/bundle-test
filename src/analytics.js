@@ -4,6 +4,13 @@ const telemetryBuckets = [
   { label: "settings", samples: [9, 11, 12, 13, 15, 16, 18, 20] },
 ]
 
+const recommendationRules = [
+  ["preload", "surface routes that users revisit during the same session"],
+  ["defer", "keep rarely visited reports out of the first interaction"],
+  ["split", "isolate feature previews from core navigation"],
+  ["inline", "keep tiny copy-only helpers near the caller"],
+]
+
 export const dashboardCopy = {
   title: "Chunk Scope PR smoke dashboard",
   empty: "No staged telemetry is available",
@@ -16,4 +23,10 @@ export function summarizeTelemetry() {
   }, 0)
 
   return `${dashboardCopy.loaded}: ${total}`
+}
+
+export function recommendationSummary() {
+  return recommendationRules
+    .map(([kind, description], index) => `${index + 1}. ${kind}: ${description}`)
+    .join(" | ")
 }
