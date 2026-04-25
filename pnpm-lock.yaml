@@ -8,11 +8,20 @@ importers:
 
   .:
     dependencies:
+      '@chunk-scope/vite-plugin':
+        specifier: git+https://github.com/Sheraff/bundle.git#staging&path:packages/vite-plugin
+        version: https://codeload.github.com/Sheraff/bundle/tar.gz/cff26efcc8fc1b66b92c76031a4ea3ed2f2f5101#path:packages/vite-plugin(vite@8.0.6)
       vite:
         specifier: 8.0.6
         version: 8.0.6
 
 packages:
+
+  '@chunk-scope/vite-plugin@https://codeload.github.com/Sheraff/bundle/tar.gz/cff26efcc8fc1b66b92c76031a4ea3ed2f2f5101#path:packages/vite-plugin':
+    resolution: {path: packages/vite-plugin, tarball: https://codeload.github.com/Sheraff/bundle/tar.gz/cff26efcc8fc1b66b92c76031a4ea3ed2f2f5101}
+    version: 0.0.0
+    peerDependencies:
+      vite: ^8.0.0
 
   '@emnapi/core@1.9.1':
     resolution: {integrity: sha512-mukuNALVsoix/w1BJwFzwXBN/dHeejQtuVzcDsfOEsdpCumXb/E9j8w11h5S54tT1xhifGfbbSm/ICrObRb3KA==}
@@ -291,6 +300,10 @@ packages:
         optional: true
 
 snapshots:
+
+  '@chunk-scope/vite-plugin@https://codeload.github.com/Sheraff/bundle/tar.gz/cff26efcc8fc1b66b92c76031a4ea3ed2f2f5101#path:packages/vite-plugin(vite@8.0.6)':
+    dependencies:
+      vite: 8.0.6
 
   '@emnapi/core@1.9.1':
     dependencies:
