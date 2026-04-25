@@ -6,6 +6,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@chunk-scope/vite-plugin": "git+https://github.com/Sheraff/bundle.git#staging&path:packages/vite-plugin",
     "vite": "8.0.6"
   },
   "devDependencies": {},

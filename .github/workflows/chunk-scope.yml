@@ -20,14 +20,7 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - uses: actions/checkout@v4
-        with:
-          repository: Sheraff/bundle
-          ref: main
-          path: .chunk-scope/bundle
-      - run: pnpm --dir .chunk-scope/bundle install --frozen-lockfile
-      - run: pnpm --dir .chunk-scope/bundle --filter @workspace/github-action exec esbuild ../vite-plugin/src/index.ts --bundle --format=esm --platform=node --external:vite --outfile="$PWD/.chunk-scope/vite-plugin.mjs"
-      - uses: Sheraff/bundle/packages/github-action@main
+      - uses: Sheraff/bundle/packages/github-action@staging
         env:
           BUNDLE_API_ORIGIN: https://chunk-scope-web-staging.me-b16.workers.dev
         with:

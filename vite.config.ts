@@ -1,5 +1,5 @@
 import { defineConfig } from "vite"
-import { bundleTracker } from "./.chunk-scope/vite-plugin.mjs"
+import { bundleTracker } from "@chunk-scope/vite-plugin"
 
 export default defineConfig({
   plugins: [
