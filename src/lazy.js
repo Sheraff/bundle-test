@@ -1,1 +1,1 @@
-export const message = "lazy chunk loaded"
+export const message = "lazy PR chunk loaded"
